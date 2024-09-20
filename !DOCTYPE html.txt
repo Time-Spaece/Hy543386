@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>自媒體定位分析器</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; background-color: #f0f0f0; }
+        h1 { color: #333; text-align: center; }
+        .input-section { background-color: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); margin-bottom: 20px; }
+        button { padding: 10px 20px; margin: 5px; background-color: #4CAF50; color: white; border: none; border-radius: 4px; cursor: pointer; transition: background-color 0.3s; }
+        button:hover { background-color: #45a049; }
+        input[type="text"] { width: 100%; padding: 10px; margin: 10px 0; box-sizing: border-box; }
+        #result { background-color: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        .platform { margin-top: 10px; padding: 10px; background-color: #e9e9e9; border-radius: 4px; }
+    </style>
+</head>
+<body>
+    <h1>自媒體定位分析器</h1>
+    <div class="input-section">
+        <p>選擇你的職業或興趣:</p>
+        <button onclick="analyze('程式設計師')">程式設計師</button>
+        <button onclick="analyze('教師')">教師</button>
+        <button onclick="analyze('攝影師')">攝影師</button>
+        <button onclick="analyze('廚師')">廚師</button>
+        <button onclick="analyze('旅遊愛好者')">旅遊愛好者</button>
+        <p>或者輸入你的職業/興趣:</p>
+        <input type="text" id="custom-occupation" placeholder="輸入你的職業或興趣">
+        <button onclick="analyzeCustom()">分析</button>
+    </div>
+    <div id="result"></div>
+
+    <script>
+        const platforms = {
+            'YouTube': '影片分享平台，適合長形式內容',
+            'Instagram': '圖片和短視頻平台，適合視覺化內容',
+            'TikTok': '短視頻平台，適合創意和趣味內容',
+            'LinkedIn': '專業社交網絡，適合B2B和職業相關內容',
+            'Twitter': '短文本平台，適合即時資訊和互動',
+            'Facebook': '綜合社交平台，適合多樣化內容和社群建立',
+            'Podcast': '音頻平台，適合深度討論和教育內容',
+            'Blog': '文字為主的平台，適合詳細解釋和長篇內容'
+        };
+
+        function getPlatformRecommendations(occupation) {
+            let recommendations = [];
+            switch(occupation) {
+                case '程式設計師':
+                    recommendations = ['YouTube', 'LinkedIn', 'GitHub', 'Blog'];
+                    break;
+                case '教師':
+                    recommendations = ['YouTube', 'TikTok', 'Podcast', 'Instagram'];
+                    break;
+                case '攝影師':
+                    recommendations = ['Instagram', 'YouTube', 'Facebook', 'Blog'];
+                    break;
+                case '廚師':
+                    recommendations = ['YouTube', 'Instagram', 'TikTok', 'Blog'];
+                    break;
+                case '旅遊愛好者':
+                    recommendations = ['Instagram', 'YouTube', 'Blog', 'TikTok'];
+                    break;
+                default:
+                    recommendations = ['YouTube', 'Instagram', 'LinkedIn', 'Twitter', 'Facebook'];
+            }
+            return recommendations;
+        }
+
+        function analyze(occupation) {
+            let recommendations = getPlatformRecommendations(occupation);
+            let analysis = `<h2>${occupation}的自媒體定位分析:</h2>`;
+            analysis += `<p>根據你的職業/興趣，以下平台可能適合你:</p>`;
+            recommendations.forEach(platform => {
+                analysis += `<div class="platform">
+                    <strong>${platform}</strong>: ${platforms[platform] || '適合多種內容類型'}
+                </div>`;
+            });
+            analysis += `<p>建議：結合你的專業知識，在這些平台上分享相關內容，如教學、經驗分享、作品展示等。記住要保持內容的一致性和高質量，並與你的受眾互動以建立忠實的粉絲群。</p>`;
+            document.getElementById('result').innerHTML = analysis;
+        }
+
+        function analyzeCustom() {
+            let customOccupation = document.getElementById('custom-occupation').value;
+            if (customOccupation) {
+                analyze(customOccupation);
+            } else {
+                alert('請輸入你的職業或興趣');
+            }
+        }
+    </script>
+</body>
+</html>
