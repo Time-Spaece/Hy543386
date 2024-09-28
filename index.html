@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>自媒體創作者分析工具</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>自媒體創作者分析工具</h1>
+        <form id="mediaCreatorForm">
+            <div class="form-group">
+                <label for="mediaType">選擇您的自媒體類型：</label>
+                <select id="mediaType" required>
+                    <option value="">請選擇</option>
+                    <option value="video">視頻創作</option>
+                    <option value="audio">音頻創作</option>
+                    <option value="writing">文字創作</option>
+                    <option value="image">圖片創作</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="experience">您的創作經驗：</label>
+                <select id="experience" required>
+                    <option value="">請選擇</option>
+                    <option value="beginner">新手</option>
+                    <option value="intermediate">有些許業餘經驗</option>
+                    <option value="advanced">有專業經驗</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="topic">您感興趣的主題：</label>
+                <select id="topic" required>
+                    <option value="">請選擇</option>
+                    <option value="education">教育/知識分享</option>
+                    <option value="entertainment">娛樂</option>
+                    <option value="lifestyle">生活方式</option>
+                    <option value="technology">科技</option>
+                    <option value="other">其他</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="timeCommitment">您計劃每週投入多少時間？</label>
+                <select id="timeCommitment" required>
+                    <option value="">請選擇</option>
+                    <option value="partTime">兼職（每週10-20小時）</option>
+                    <option value="fullTime">全職（每週40+小時）</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>您感興趣的技能：（可多選）</label>
+                <div class="checkbox-group">
+                    <input type="checkbox" id="writing" name="skills" value="writing">
+                    <label for="writing">文案寫作</label>
+
+                    <input type="checkbox" id="videoEditing" name="skills" value="videoEditing">
+                    <label for="videoEditing">視頻拍攝與剪輯</label>
+
+                    <input type="checkbox" id="graphicDesign" name="skills" value="graphicDesign">
+                    <label for="graphicDesign">平面設計</label>
+
+                    <input type="checkbox" id="marketing" name="skills" value="marketing">
+                    <label for="marketing">市場營銷</label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>您目前使用的設備：（可多選）</label>
+                <div class="checkbox-group">
+                    <input type="checkbox" id="smartphone" name="equipment" value="smartphone">
+                    <label for="smartphone">智能手機</label>
+
+                    <input type="checkbox" id="computer" name="equipment" value="computer">
+                    <label for="computer">電腦</label>
+
+                    <input type="checkbox" id="camera" name="equipment" value="camera">
+                    <label for="camera">專業相機</label>
+
+                    <input type="checkbox" id="microphone" name="equipment" value="microphone">
+                    <label for="microphone">專業麥克風</label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="aiAttitude">您對AI工具的態度：</label>
+                <select id="aiAttitude" required>
+                    <option value="">請選擇</option>
+                    <option value="positive">積極使用</option>
+                    <option value="neutral">中立，視情況而定</option>
+                    <option value="negative">不太願意使用</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="goal">您的目標是：</label>
+                <select id="goal" required>
+                    <option value="">請選擇</option>
+                    <option value="hobby">兼職/愛好</option>
+                    <option value="partTime">部分收入來源</option>
+                    <option value="fullTime">全職創業</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>您感興趣的AI工具：（可多選）</label>
+                <div class="checkbox-group">
+                    <input type="checkbox" id="chatgpt" name="aiTools" value="chatgpt">
+                    <label for="chatgpt">ChatGPT</label>
+
+                    <input type="checkbox" id="midjourney" name="aiTools" value="midjourney">
+                    <label for="midjourney">Midjourney</label>
+
+                    <input type="checkbox" id="jianying" name="aiTools" value="jianying">
+                    <label for="jianying">剪映</label>
+
+                    <input type="checkbox" id="otherAI" name="aiTools" value="other">
+                    <label for="otherAI">其他</label>
+                </div>
+            </div>
+
+            <button type="submit">提交分析</button>
+        </form>
+
+        <div id="result" style="display:none;">
+            <h2>評估分析結果</h2>
+            
+            <h3>1. 自媒體類型和主題定位</h3>
+            <p id="mediaTypeAnalysis"></p>
+            <p>具體建議：</p>
+            <ul>
+                <li id="specificArea"></li>
+                <li id="researchCreators"></li>
+                <li id="contentPlan"></li>
+            </ul>
+
+            <h3>2. 技能提升計劃</h3>
+            <div id="skillsPlan"></div>
+
+            <h3>3. 設備升級建議</h3>
+            <ul id="equipmentSuggestions"></ul>
+
+            <h3>4. AI工具應用策略</h3>
+            <div id="aiStrategy"></div>
+
+            <h3>5. 職業發展建議</h3>
+            <ul id="careerAdvice"></ul>
+
+            <h3>6. 持續學習和評估計劃</h3>
+            <ul id="learningPlan"></ul>
+
+            <h3>行動計劃</h3>
+            <ul>
+                <li>第一週：<span id="firstWeekTask"></span></li>
+                <li>第一個月：<span id="firstMonthGoal"></span></li>
+                <li>三個月里程碑：<span id="threeMonthMilestone"></span></li>
+                <li>半年檢視點：<span id="sixMonthReview"></span></li>
+            </ul>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
